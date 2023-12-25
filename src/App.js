@@ -1,8 +1,17 @@
-import logo from "./logo.svg";
+import { BrowserRouter } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
+import Main from "./pages/main";
 
 function App() {
-  return <div>인터넷프로그래밍 term project</div>;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/main" element={<Main />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;
