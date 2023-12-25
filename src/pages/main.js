@@ -6,8 +6,10 @@ import CustomBtn from "../components/button/button";
 import line2Img from "../assets/images/line2.png";
 import InputWeekday from "../components/InputWeekday";
 import InputDirection from "../components/InputDirection";
+import { useNavigate } from "react-router-dom";
 
 const Main = () => {
+  const navigate = useNavigate();
   return (
     <div>
       <InputContainer>
@@ -34,7 +36,10 @@ const Main = () => {
           상, 하행 선택
           <InputDirection />
         </InputItem>
-        <CustomBtn text="평균 혼잡도 확인" />
+        <CustomBtn
+          text="평균 혼잡도 확인"
+          onClick={() => navigate("/result")}
+        />
       </InputContainer>
     </div>
   );
