@@ -2,6 +2,9 @@ import InputStation from "../components/InputStation";
 import InputTime from "../components/InputTime";
 import styled from "styled-components";
 import CustomBtn from "../components/button/button";
+
+import { useState } from "react";
+
 //이미지
 import line2Img from "../assets/images/line2.png";
 import InputWeekday from "../components/InputWeekday";
@@ -10,6 +13,23 @@ import { useNavigate } from "react-router-dom";
 
 const Main = () => {
   const navigate = useNavigate();
+
+  const [weekday] = useState(localStorage.getItem("weekday") || "");
+  const [time] = useState(localStorage.getItem("time") || "");
+  const [startStation] = useState(localStorage.getItem("start") || "");
+  const [endStation] = useState(localStorage.getItem("end") || "");
+  const [direction] = useState(localStorage.getItem("direction") || "");
+
+  const handleSubmit = () => {
+    const query = `?weekday=${localStorage.getItem(
+      "weekday"
+    )}&time=${localStorage.getItem("time")}&start=${localStorage.getItem(
+      "start"
+    )}&end=${localStorage.getItem("end")}&dir=${localStorage.getItem(
+      "direction"
+    )}`;
+    navigate(`/result${query}`);
+  };
   return (
     <div>
       <InputContainer>
@@ -31,20 +51,16 @@ const Main = () => {
           도착역
           <InputStation text="도착역" title="end" />
         </InputItem>
-
         <InputItem>
           상, 하행 선택
           <InputDirection />
         </InputItem>
-        <CustomBtn
-          text="평균 혼잡도 확인"
-          onClick={() => navigate("/result")}
-        />
+        <CustomBtn text="평균 혼잡도 확인" onClick={handleSubmit} />
       </InputContainer>
     </div>
   );
 };
-const InputContainer = styled.div`
+const InputContainer = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
