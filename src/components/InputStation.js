@@ -4,35 +4,22 @@ import styled from "styled-components";
 
 const InputStation = ({ title, text }) => {
   //local에 저장할때 title: 지하철명
-  //local에 start:__역, end:___역으로 저장됨
-  const [station, setStation] = useState(localStorage.getItem(title) || "");
-
-  // const handleChange = (event) => {
-  //   setStation(event.target.value);
-  // };
-
-  // useEffect(() => {
-  //   localStorage.setItem(title, station);
-  // }, [station, title]);
-
-  // const { station, updateStation } = useStation();
-
-  // const handleChange = (event) => {
-  //   updateStation(event.target.value);
-  // };
+  const [stationName, setStationName] = useState(
+    localStorage.getItem(title) || ""
+  );
+  const [stationCode, setStationCode] = useState("");
 
   const handleChange = (event) => {
-    setStation(event.target.value);
-    localStorage.setItem(title, event.target.value);
+    const selectedStationName = event.target.value.replace("역", "");
+    const selectedStationCode = getStationCode(selectedStationName);
+    setStationName(event.target.value); // 사용자가 선택한 역 이름 저장
+    setStationCode(selectedStationCode); // 선택된 역의 코드 저장
+    localStorage.setItem(title, selectedStationCode); // 로컬 스토리지에는 역 코드로 저장
   };
 
   useEffect(() => {
-    localStorage.setItem(title, station);
-  }, [station, title]);
-
-  useEffect(() => {
     const handleStorageChange = () => {
-      setStation(localStorage.getItem(title) || "");
+      setStationCode(localStorage.getItem(title) || "");
     };
 
     window.addEventListener("storage", handleStorageChange);
@@ -40,7 +27,55 @@ const InputStation = ({ title, text }) => {
       window.removeEventListener("storage", handleStorageChange);
     };
   }, [title]);
-
+  // 역 이름을 역 코드로 변환하는 함수
+  const getStationCode = (stationName) => {
+    const stationCodes = {
+      시청: 201,
+      을지로입구: 202,
+      을지로3가: 203,
+      을지로4가: 204,
+      동대문역사문화공원: 205,
+      신당: 206,
+      상왕십리: 207,
+      왕십리: 208,
+      한양대: 209,
+      뚝섬: 210,
+      성수: 211,
+      건대입구: 212,
+      구의: 213,
+      강변: 214,
+      잠실나루: 215,
+      잠실: 216,
+      잠실새내: 217,
+      종합운동장: 218,
+      삼성: 219,
+      선릉: 220,
+      역삼: 221,
+      강남: 222,
+      교대: 223,
+      서초: 224,
+      방배: 225,
+      사당: 226,
+      낙성대: 227,
+      서울대입구: 228,
+      봉천: 229,
+      신림: 230,
+      신대방: 231,
+      구로디지털단지: 232,
+      대림: 233,
+      신도림: 234,
+      문래: 235,
+      영등포구청: 236,
+      당산: 237,
+      합정: 238,
+      홍대입구: 239,
+      신촌: 240,
+      이대: 241,
+      아현: 242,
+      충정로: 243,
+    };
+    return stationCodes[stationName] || stationName;
+  };
   //2호선 전체
   const line2Stations = [
     "강남역",
@@ -98,7 +133,7 @@ const InputStation = ({ title, text }) => {
 
   return (
     <div>
-      <SelectContainer value={station} onChange={handleChange}>
+      <SelectContainer value={stationName} onChange={handleChange}>
         {line2Stations.map((stationName) => (
           <option key={stationName} value={stationName}>
             {stationName}

@@ -20,11 +20,18 @@ const InputDirection = () => {
   return (
     <div>
       <SelectContainer value={direction} onChange={handleDirectionChange}>
+        <option key="0" value="0">
+          상행
+        </option>
+        <option key="1" value="1">
+          하행
+        </option>
+        {/*        
         {directions.map((dir) => (
           <option key={dir} value={dir}>
             {dir}
           </option>
-        ))}
+        ))} */}
       </SelectContainer>
     </div>
   );

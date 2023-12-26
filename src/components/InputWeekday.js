@@ -20,11 +20,26 @@ const InputWeekday = () => {
   return (
     <div>
       <SelectContainer value={weekday} onChange={handleWeekdayChange}>
-        {weekdays.map((day) => (
+        <option key="MON" value="MON">
+          월요일
+        </option>
+        <option key="TUE" value="TUE">
+          화요일
+        </option>
+        <option key="WED" value="WED">
+          수요일
+        </option>
+        <option key="THU" value="THU">
+          목요일
+        </option>
+        <option key="FRI" value="FRI">
+          금요일
+        </option>
+        {/* {weekdays.map((day) => (
           <option key={day} value={day}>
             {day}
           </option>
-        ))}
+        ))} */}
       </SelectContainer>
     </div>
   );
