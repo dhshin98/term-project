@@ -1,5 +1,120 @@
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
 const Result = () => {
-  return <div>Result 페이지입니다.</div>;
+  const [weekday, setWeekday] = useState("");
+  const [time, setTime] = useState("");
+  const [start, setStart] = useState("");
+  const [end, setEnd] = useState("");
+  const [dir, setDir] = useState("");
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    setWeekday(params.get("weekday") || "");
+    setTime(params.get("time") || "");
+    setStart(params.get("start") || "");
+    setEnd(params.get("end") || "");
+    setDir(params.get("dir") || "");
+  }, []);
+
+  return (
+    <ResultContainer>
+      <h1>찾고 싶은 혼잡도 정보</h1>
+      <form
+        method="GET"
+        action="http://cspro.sogang.ac.kr/~cse20181648/cgi-bin/DB_project_display.php"
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          marginTop: "20px",
+        }}
+      >
+        <label htmlFor="weekday">요일:</label>
+        <input
+          type="text"
+          id="weekday"
+          name="weekday"
+          placeholder="e.g., FRI"
+          required
+          value={weekday}
+          onChange={(e) => setWeekday(e.target.value)}
+        />
+
+        <label htmlFor="time">시간:</label>
+        <input
+          type="text"
+          id="time"
+          name="time"
+          placeholder="e.g., 07:06"
+          required
+          value={time}
+          onChange={(e) => setTime(e.target.value)}
+        />
+
+        <label htmlFor="start">출발역:</label>
+        <input
+          type="number"
+          id="start"
+          name="start"
+          placeholder="e.g., 239"
+          required
+          value={start}
+          onChange={(e) => setStart(e.target.value)}
+        />
+
+        <label htmlFor="end">도착역:</label>
+        <input
+          type="number"
+          id="end"
+          name="end"
+          placeholder="e.g., 230"
+          required
+          value={end}
+          onChange={(e) => setEnd(e.target.value)}
+        />
+
+        <label htmlFor="dir">상/하행 정보:</label>
+        <input
+          type="number"
+          id="dir"
+          name="dir"
+          placeholder="e.g., 0"
+          required
+          value={dir}
+          onChange={(e) => setDir(e.target.value)}
+        />
+
+        <CustomButton type="submit" className="button">
+          혼잡도 확인하러 가기
+        </CustomButton>
+      </form>
+    </ResultContainer>
+  );
 };
+
+const ResultContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+const CustomButton = styled.button`
+  margin-top: 1rem;
+  display: inline-block;
+  border-radius: 7px;
+  border: none;
+  background: #1875ff;
+  color: white;
+  font-family: inherit;
+  text-align: center;
+  font-size: 13px;
+  width: 13rem;
+  padding: 1em;
+  transition: all 0.4s;
+  cursor: pointer;
+  &:hover span {
+    padding-right: 3.55em;
+  }
+`;
 
 export default Result;

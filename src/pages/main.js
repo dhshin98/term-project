@@ -32,7 +32,16 @@ const Main = () => {
   };
   return (
     <div>
-      <InputContainer>
+      <form
+        method="GET"
+        action="http://cspro.sogang.ac.kr/~cse20181648/cgi-bin/aa.cgi"
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          marginTop: "20px",
+        }}
+      >
         <h1>🚊 2호선 출근시간 평균 혼잡도 확인 🚊</h1>
         <img src={line2Img} alt="line2" width="400px" height="400px" />
         <InputItem>
@@ -56,7 +65,7 @@ const Main = () => {
           <InputDirection />
         </InputItem>
         <CustomBtn text="평균 혼잡도 확인" onClick={handleSubmit} />
-      </InputContainer>
+      </form>
     </div>
   );
 };
@@ -65,6 +74,8 @@ const InputContainer = styled.form`
   flex-direction: column;
   align-items: center;
   margin-top: 20px;
+  method: GET;
+  action: "http://cspro.sogang.ac.kr/~cse20181648/cgi-bin/aa.cgi";
 `;
 const InputItem = styled.div`
   display: flex;
