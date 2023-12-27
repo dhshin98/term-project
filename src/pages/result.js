@@ -38,6 +38,16 @@ const Result = () => {
           required
           value={weekday}
           onChange={(e) => setWeekday(e.target.value)}
+          style={{
+            padding: "10px",
+            width: "200px",
+            border: "2px solid #007BFF",
+            borderRadius: "10px",
+            margin: "5px 0",
+            outline: "none",
+            boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
+            transition: "border-color 0.3s ease-in-out",
+          }}
         />
 
         <label htmlFor="time">시간:</label>
@@ -49,6 +59,16 @@ const Result = () => {
           required
           value={time}
           onChange={(e) => setTime(e.target.value)}
+          style={{
+            padding: "10px",
+            width: "200px",
+            border: "2px solid #007BFF",
+            borderRadius: "10px",
+            margin: "5px 0",
+            outline: "none",
+            boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
+            transition: "border-color 0.3s ease-in-out",
+          }}
         />
 
         <label htmlFor="start">출발역:</label>
@@ -60,6 +80,16 @@ const Result = () => {
           required
           value={start}
           onChange={(e) => setStart(e.target.value)}
+          style={{
+            padding: "10px",
+            width: "200px",
+            border: "2px solid #007BFF",
+            borderRadius: "10px",
+            margin: "5px 0",
+            outline: "none",
+            boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
+            transition: "border-color 0.3s ease-in-out",
+          }}
         />
 
         <label htmlFor="end">도착역:</label>
@@ -71,6 +101,16 @@ const Result = () => {
           required
           value={end}
           onChange={(e) => setEnd(e.target.value)}
+          style={{
+            padding: "10px",
+            width: "200px",
+            border: "2px solid #007BFF",
+            borderRadius: "10px",
+            margin: "5px 0",
+            outline: "none",
+            boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
+            transition: "border-color 0.3s ease-in-out",
+          }}
         />
 
         <label htmlFor="dir">상/하행 정보:</label>
@@ -82,6 +122,16 @@ const Result = () => {
           required
           value={dir}
           onChange={(e) => setDir(e.target.value)}
+          style={{
+            padding: "10px",
+            width: "200px",
+            border: "2px solid #007BFF",
+            borderRadius: "10px",
+            margin: "5px 0",
+            outline: "none",
+            boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
+            transition: "border-color 0.3s ease-in-out",
+          }}
         />
 
         <CustomButton type="submit" className="button">
